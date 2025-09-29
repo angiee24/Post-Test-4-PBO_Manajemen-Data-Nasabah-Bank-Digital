@@ -84,12 +84,9 @@ Setiap input yang salah akan dianggap tidak valid untuk mencegah error ketika pe
 
 ## Menu Create (Tambah Nasabah)
 
-<img width="582" height="150" alt="image" src="https://github.com/user-attachments/assets/61b42785-1d08-466e-808d-9dbce520f9a2" />
+<img width="478" height="194" alt="image" src="https://github.com/user-attachments/assets/c8b25519-8f9b-4a1f-b7a1-9fde91c32af6" />
 
-
-<img width="577" height="149" alt="image" src="https://github.com/user-attachments/assets/a6df07f2-6b24-4ea5-ab2e-0aaa3e13eecb" />
-
-Pada menu Tambah Nasabah, pengguna memasukkan nama dan jumlah setoran awal, lalu sistem otomatis membuat nomor rekening baru serta menentukan tipe nasabah berdasarkan nominal setoran: jika setoran awal ≥ Rp1.000.000 maka akan tercatat sebagai Nasabah Prioritas, sedangkan jika < Rp1.000.000 maka akan tercatat sebagai Nasabah Biasa; hasilnya ditampilkan ke layar lengkap dengan kategori nasabah, sehingga selain menyimpan data, program juga mampu membedakan layanan melalui penerapan konsep Encapsulation, Inheritance, dan Overriding.
+Output tersebut menunjukkan interaksi saat mencoba menambahkan nasabah baru. Program meminta nama dan setoran awal. Ketika pengguna memasukkan 10000, program menolaknya karena di bawah setoran minimum Rp50.000, lalu meminta input ulang. Saat pengguna salah memasukkan sepuluh, program mendeteksi input non-angka dan menampilkan pesan kesalahan. Akhirnya, ketika pengguna memasukkan 50000, program menerima nilai tersebut, berhasil membuat nasabah bernama Angie, dan memberikan nomor rekening baru 2025003 sebagai konfirmasi.
 
 ## Menu Read (Tampilkan Nasabah)
 
@@ -186,9 +183,13 @@ Alur ini menunjukkan penanganan input yang tidak valid di dalam sub-menu transak
 
 ## Menu Mutasi (Lihat Mutasi Rekening)
 
-<img width="546" height="207" alt="image" src="https://github.com/user-attachments/assets/112a5892-556c-4164-8f34-dad6d2ccd885" />
+<img width="809" height="157" alt="image" src="https://github.com/user-attachments/assets/357158c4-f0e2-4f7f-a53f-14f2c83cf894" />
 
-Pada menu Lihat Mutasi Rekening, pengguna diminta memasukkan nomor rekening yang ingin diperiksa (contoh: REK2025001). Jika nomor rekening ditemukan, program akan menampilkan nama pemilik rekening sebagai judul, diikuti oleh daftar semua transaksi yang pernah tercatat. Pada contoh ini, hanya transaksi "Setoran Awal" yang ditampilkan karena belum ada aktivitas lain yang dilakukan oleh nasabah tersebut.
+Output ini memperlihatkan bahwa pengguna memilih menu 6 untuk melihat mutasi rekening dengan nomor 2025001. Program mengenali bahwa nasabah ini adalah nasabah biasa dan secara otomatis memotong biaya administrasi bulanan sebesar Rp5.000,00, karena ini adalah kali pertama mutasi dilihat di bulan September 2025. Setelah pemotongan, saldo awal Rp500.000,00 berkurang menjadi Rp495.000,00, dan mutasi tersebut dicatat dalam riwayat rekening nasabah.
+
+<img width="909" height="157" alt="image" src="https://github.com/user-attachments/assets/f703dbc2-6d65-4f3c-9ead-45f206b84f0c" />
+
+Output ini memperlihatkan pengguna memilih menu 6 untuk melihat mutasi rekening, lalu memasukkan nomor rekening 2025002. Program mengenali bahwa ini adalah rekening nasabah prioritas dan, sesuai dengan perubahan yang telah Anda buat, secara otomatis memotong biaya administrasi bulanan sebesar Rp3.000,00. Potongan ini terjadi karena ini adalah kali pertama mutasi rekening dilihat pada bulan September 2025. Setelah pemotongan, saldo awal yang tadinya Rp12.000.000,00 berkurang menjadi Rp11.997.000,00, dan mutasi tersebut dicatat dalam riwayat rekening nasabah.
 
 <img width="440" height="119" alt="image" src="https://github.com/user-attachments/assets/a81a8e3d-a015-4441-839e-d22da9b5091a" />
 
