@@ -1,6 +1,5 @@
-# Post-Test-4-PBO_Manajemen-Data-Nasabah-Bank-Digital
+# Post Test 4-PBO Manajemen-Data-Nasabah-Bank-Digital
 
-# Post Test 4 PBO 
 # Manajemen Data Nasabah Bank Digital
 
 Angela Caroline Budiman (2409116008)
@@ -39,28 +38,117 @@ Menambahkan bonus 2% dari saldo hanya untuk nasabah prioritas, lalu menampilkan 
 9. Keluar (Exit)
 Menghentikan dan keluar dari program.
 
+##  Letak penerapan Abstraction (class/interface)
+
+Abstraksi adalah konsep di mana detail implementasi yang rumit disembunyikan, dan hanya fungsionalitas esensial yang diekspos. Dalam kode Anda, ini diterapkan melalui interface dan abstract class.
+
+### Transaksi.java (interface)
+
+<img width="802" height="232" alt="image" src="https://github.com/user-attachments/assets/088391f6-273e-4c0a-9498-81f0f15c7ac1" />
+
+Ini adalah sebuah interface yang mendefinisikan "kontrak" untuk fungsionalitas transaksi. Kelas apa pun yang mengimplementasikan Transaksi harus menyediakan implementasi untuk semua method yang ada di dalamnya, tanpa peduli bagaimana detailnya bekerja.
+
+### Nasabah.java (Abstract Class)
+
+Ini adalah abstract class yang tidak dapat dibuat objeknya secara langsung. Ia berperan sebagai "cetak biru" yang menyatukan atribut dan method umum untuk semua jenis nasabah (baik nasabah biasa maupun prioritas).
+
+<img width="641" height="30" alt="image" src="https://github.com/user-attachments/assets/854fda39-340a-49a7-9fd1-bfee17e4da0b" />
+
+<img width="706" height="61" alt="image" src="https://github.com/user-attachments/assets/dcfbce38-3930-4f94-b05b-40d5d2ef88c0" />
+
+Kedua method ini (getJenisNasabah() dan biayaTransfer()) didefinisikan sebagai abstract, yang berarti implementasinya wajib disediakan oleh kelas anak (NasabahBiasa dan NasabahPrioritas).
+
+## Letak penerapan Polymorphism (Overloading & Overriding)
+
+Polimorfisme memungkinkan objek dari kelas yang berbeda untuk diperlakukan sebagai objek dari kelas yang sama. Dalam kode Anda, polimorfisme diterapkan melalui dua cara: Overloading dan Overriding.
+
+Overloading
+Overloading adalah penggunaan nama method yang sama tetapi dengan parameter yang berbeda. Ini terjadi di interface Transaksi dan diimplementasikan di kelas Nasabah.
+
+### Nasabah.java
+
+<img width="838" height="113" alt="image" src="https://github.com/user-attachments/assets/a6239310-5ebe-4814-9023-844ec8af1bc2" />
+
+<img width="901" height="119" alt="image" src="https://github.com/user-attachments/assets/90e2fe6f-b330-4714-8ec9-130cb2462959" />
+
+<img width="731" height="55" alt="image" src="https://github.com/user-attachments/assets/72149895-d508-4714-aa97-bd48c3473778" />
+
+<img width="878" height="54" alt="image" src="https://github.com/user-attachments/assets/eb7d1303-a82d-431e-949e-ddb980630419" />
+
+Ini adalah inti dari Polimorfisme Overloading, yang berarti satu nama method (setor, tarik, transfer) digunakan untuk melakukan operasi yang serupa namun dapat menerima jumlah atau jenis argumen yang berbeda. Fleksibilitas ini memungkinkan kode di layer BankService dan Main untuk memanggil fungsi transfer secara singkat (transfer(tujuan, jumlah)) atau dengan detail tambahan (transfer(tujuan, jumlah, keterangan)), tanpa harus mengingat banyak nama fungsi, sehingga membuat interface kode menjadi lebih intuitif, bersih, dan maintainable.
+
+## Overriding
+Overriding adalah ketika kelas anak mendefinisikan ulang method yang sudah ada di kelas induk. Ini terjadi pada kelas NasabahBiasa dan NasabahPrioritas, yang menyediakan implementasi spesifik untuk method abstrak dari Nasabah.
+
+### NasabahBiasa.java
+<img width="725" height="116" alt="image" src="https://github.com/user-attachments/assets/4bbd5bae-53d4-4b48-8b8a-73c3423987b2" />
+
+<img width="439" height="53" alt="image" src="https://github.com/user-attachments/assets/99e5012a-cd11-4f66-8bec-f1ebdb435972" />
+
+1. getJenisNasabah() 
+
+Method ini, yang bersifat abstract di kelas induk, diimplementasikan di sini untuk secara eksplisit mengembalikan nilai "Nasabah Biasa". Ini memberikan identitas konkret bagi objek NasabahBiasa.
+
+2. biayaTransfer(double jumlah) 
+
+Method ini di-override untuk menetapkan kebijakan biaya transfer yang spesifik untuk Nasabah Biasa. Implementasi detailnya (misalnya, biaya Rp2.500 atau Rp5.000) akan berada di dalam blok method ini.
+
+3. tampilkanInfo()
+
+Method ini di-override untuk menyesuaikan tampilan informasi nasabah. Biasanya, implementasi di sini akan menambahkan awalan spesifik ([Nasabah Biasa]) sebelum memanggil method tampilkanInfo() dari kelas induk.
+
+### NasabahPrioritas.java
+<img width="761" height="123" alt="image" src="https://github.com/user-attachments/assets/f069273d-a519-40df-b8d3-b5b26abeb4f9" />
+
+<img width="436" height="58" alt="image" src="https://github.com/user-attachments/assets/c62ffd18-3908-479a-a129-fc8bdec2dea1" />
+
+Tiga method utama yang di-override dari kelas induk (Nasabah.java) adalah:
+
+1. getJenisNasabah() 
+
+Method ini diimplementasikan untuk mengidentifikasi objek secara spesifik sebagai "Nasabah Prioritas". Ini mengisi kekosongan yang ditinggalkan oleh method abstrak di kelas induk.
+
+2. biayaTransfer(double jumlah) 
+
+Method ini di-override untuk menetapkan kebijakan biaya transfer yang berbeda. Dalam kasus nasabah prioritas, kebijakan ini biasanya lebih menguntungkan (misalnya, biaya transfer nol atau lebih rendah) dibandingkan nasabah biasa.
+
+3. tampilkanInfo() 
+
+Method ini di-override untuk menyesuaikan format output. Implementasi di sini memungkinkan penambahan awalan spesifik seperti [Nasabah Prioritas] sebelum menampilkan detail umum nasabah yang diwarisi dari kelas induk.
+
+Penggunaan anotasi @Override memastikan bahwa compiler memverifikasi bahwa signature method di kelas anak ini sudah benar-benar cocok dengan signature method di kelas induk.
+
+## penggunaan Anotasi dan Penerapan Fungsional
+- Kedua kelas anak ini memperluas fungsionalitas kelas induk dengan menambahkan teks khusus sebelum memanggil method asli dari kelas induknya (super.tampilkanInfo()).
+
+- Polimorfisme ini memungkinkan method seperti tampilkanSemuaNasabah() di BankService untuk memanggil n.tampilkanInfo() pada setiap objek Nasabah (baik yang merupakan NasabahBiasa maupun NasabahPrioritas) dalam daftar, dan JVM secara otomatis menjalankan versi method yang benar sesuai dengan jenis objeknya.
+
 ## Struktur Project
 
 <img width="411" height="224" alt="image" src="https://github.com/user-attachments/assets/01459cc6-ca82-4594-8004-51885696b819" />
 
-1. model
-- Berisi class Nasabah (superclass), serta subclass NasabahBiasa dan NasabahPrioritas.
-- Menunjukkan atribut (nomorRekening, nama, saldo, mutasiRekening) dengan access modifier private.
-- Menerapkan constructor untuk inisialisasi data nasabah serta getter & setter untuk akses data (penerapan encapsulation).
-- Subclass menerapkan inheritance dari Nasabah dan melakukan overriding pada method tampilkanInfo().
-- Fungsinya: merepresentasikan objek nasabah dalam sistem sesuai tipe (Biasa/Prioritas).
+1. com.mycompany.bankapp.model (Layer Model)
 
-2. service
-- Berisi class BankService.
-- Menyimpan seluruh logika CRUD (Create, Read, Update, Delete) serta fitur transaksi (Setor, Tarik, Transfer), mutasi rekening, dan pencarian data.
-- Mengatur alur program, termasuk validasi input nominal dan saldo minimum.
-- Fungsinya: sebagai controller yang menghubungkan data (model) dengan tampilan (view).
+Layer ini bertanggung jawab penuh atas data dan aturan inti sistem perbankan.
+- Nasabah.java: Ini adalah superclass yang mendefinisikan atribut umum nasabah (nomorRekening, nama, saldo, mutasiRekening) dan menerapkan Enkapsulasi melalui setter dan getter.
+- NasabahBiasa.java & NasabahPrioritas.java: Ini adalah subclass yang menerapkan Inheritansi dari Nasabah dan melakukan overriding pada method penting seperti biayaTransfer dan tampilkanInfo.
+- Transaksi.java: Ini adalah sebuah Interface yang mendefinisikan kontrak (seperangkat aturan) untuk semua method yang berhubungan dengan kegiatan perbankan seperti setor, tarik, dan transfer.
 
-3. view
-- Berisi class Main.
-- Menyediakan menu interaktif berupa pilihan angka 1–8 yang dapat diakses oleh pengguna.
-- Menangani input user (validasi angka atau non-angka) dan memanggil method dari BankService.
-- Fungsinya: menjadi antarmuka pengguna (UI) berbasis console untuk menjalankan program.
+2. com.mycompany.bankapp.service (Layer Service/Controller)
+   
+Layer ini berisi seluruh logika bisnis dan operasional sistem.
+- Berisi Class: BankService.java.
+- Logika Bisnis: Menyimpan seluruh logika CRUD (Create, Read, Update, Delete). Ini juga mengatur fitur transaksi (Setor, Tarik, Transfer), mutasi rekening, dan pencarian data.
+- Validasi: Mengatur alur program, termasuk validasi input nominal dan saldo minimum, serta penentuan biaya admin bulanan yang berbeda berdasarkan jenis nasabah.
+- Fungsi Utama: Bertindak sebagai controller yang menghubungkan data (model) dengan tampilan (view)
+
+3. com.mycompany.bankapp.view (Layer View)
+   
+Layer ini bertanggung jawab atas interaksi dengan pengguna melalui console.
+- Berisi Class: Main.java.
+- Interaksi Pengguna: Menyediakan menu interaktif berupa pilihan 1-8 yang dapat diakses oleh pengguna.
+- Penanganan Input: Menangani input pengguna, termasuk validasi angka atau non-angka, dan memanggil method dari BankService.
+- Fungsi Utama: Menjadi antarmuka pengguna (UI) berbasis console untuk menjalankan program.
 
 ## Penerapan OOP
 - **Encapsulation**  
